@@ -355,6 +355,52 @@
             margin-bottom: 5px;
         }
 
+        /* Training & Workshops Gallery Styling */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 246, 255, 0.15);
+            transition: all 0.3s ease;
+            background: #1a1d24;
+        }
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 246, 255, 0.25);
+            border-color: #00f6ff;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 15, 25, 0.85);
+            backdrop-filter: blur(5px);
+            color: #00f6ff;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.05em;
+            border-top: 1px solid rgba(0, 246, 255, 0.2);
+            letter-spacing: 0.5px;
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             #home { flex-direction: column-reverse; text-align: center; padding-top: 160px; justify-content: center; gap: 50px; }
@@ -385,6 +431,7 @@
             .expertise-container { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
             .expertise-item { padding: 20px 10px; font-size: 1em; }
             .expertise-icon { font-size: 2em; }
+            .gallery-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -399,6 +446,7 @@
             <li><a href="#journey">My Journey</a></li>
             <li><a href="#certifications">Certifications</a></li>
             <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#training">Training</a></li>
         </ul>
     </nav>
 
@@ -474,6 +522,7 @@
         </div>
     </section>
 
+    <!-- CERTIFICATIONS SECTION -->
     <section id="certifications">
         <h2 class="section-title">My <span>Certifications</span></h2>
         <div class="glass-card cert-container">
@@ -506,6 +555,7 @@
         </div>
     </section>
 
+    <!-- EXPERTISE SECTION -->
     <section id="expertise">
         <h2 class="section-title">My <span>Expertise</span></h2>
         <div class="glass-card">
@@ -571,6 +621,44 @@
                     Brow Lamination
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW TRAINING & WORKSHOPS SECTION -->
+    <section id="training">
+        <h2 class="section-title">Training & <span>Workshops</span></h2>
+        <div class="glass-card">
+            <div class="intro-text" style="text-align: center;">
+                <p>As a dedicated educator, I conduct comprehensive training sessions and masterclasses, helping students master the art of nails and SPMU through hands-on practice, live demonstrations, and professional guidance.</p>
+            </div>
+            
+            <div class="gallery-container">
+                <!-- Replace 'your-image.jpg' with actual image paths -->
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/1a1d24/00f6ff?text=Live+Training" alt="Live Training Sessions">
+                    <div class="gallery-caption">Live Training Sessions</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/1a1d24/00f6ff?text=Student+Practice" alt="Student Practice">
+                    <div class="gallery-caption">Student Practice</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/1a1d24/00f6ff?text=Workshops" alt="Workshops">
+                    <div class="gallery-caption">Workshops</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/1a1d24/00f6ff?text=Demonstrations" alt="Demonstrations">
+                    <div class="gallery-caption">Demonstrations</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/1a1d24/00f6ff?text=Certification" alt="Certification Ceremonies">
+                    <div class="gallery-caption">Certification Ceremonies</div>
+                </div>
             </div>
         </div>
     </section>
