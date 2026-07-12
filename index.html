@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kavita Teja - Portfolio</title>
+    <style>
+        /* ==========================================
+           CUSTOM FONTS: Loading external font files
+           ========================================== */
+        @font-face {
+            font-family: 'Poppins-Regular';
+            src: url('Poppins-Regular.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Poppins-SemiBold';
+            src: url('Poppins-SemiBold.ttf') format('truetype');
+        }
+
+        /* Animation: Makes the hexagon image shake smoothly */
+        @keyframes slowShake {
+            0% { transform: rotate(0deg); }
+            20% { transform: rotate(1deg); }
+            40% { transform: rotate(-1deg); }
+            60% { transform: rotate(1deg); }
+            80% { transform: rotate(-1deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* Animations: Moving glowing orbs in the background */
+        @keyframes floatOrb1 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40vw, 30vh) scale(1.3); }
+            100% { transform: translate(10vw, 60vh) scale(0.9); }
+        }
+
+        @keyframes floatOrb2 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-40vw, -30vh) scale(1.2); }
+            100% { transform: translate(-10vw, -70vh) scale(1.4); }
+        }
+
+        /* Animation: Smooth color shifting for background */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* General Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* TEXT SELECTION COLOR */
+        ::selection {
+            background-color: #00f6ff; 
+            color: #1a1d24; 
+        }
+        ::-moz-selection {
+            background-color: #00f6ff;
+            color: #1a1d24;
+        }
+
+        h1, h2, h3, h4, h5, h6, .logo {
+            font-family: 'Poppins-SemiBold', sans-serif;
+        }
+
+        body {
+            font-family: 'Poppins-Regular', sans-serif;
+            background-color: #080c13; 
+            background: linear-gradient(
+                -45deg, 
+                #080c13 0%, 
+                #0f3b4d 25%, 
+                #080c13 50%, 
+                #144a66 75%, 
+                #080c13 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            z-index: 0;
+        }
+
+        /* BRIGHT BACKGROUND ORBS */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            width: 650px;
+            height: 650px;
+            border-radius: 50%;
+            filter: blur(140px); 
+            z-index: -1;
+            pointer-events: none; 
+            opacity: 0.45; 
+        }
+
+        body::before {
+            background: #00f6ff; 
+            top: -10%;
+            left: -10%;
+            animation: floatOrb1 20s infinite alternate ease-in-out;
+        }
+
+        body::after {
+            background: #00aaff; 
+            bottom: -10%;
+            right: -10%;
+            animation: floatOrb2 25s infinite alternate-reverse ease-in-out;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(10, 15, 25, 0.65); 
+            backdrop-filter: blur(25px) saturate(120%); 
+            -webkit-backdrop-filter: blur(25px) saturate(120%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 20px 10%; 
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; 
+        }
+        
+        nav .logo {
+            font-size: 1.8em; font-weight: 800; font-family: 'Poppins-SemiBold', sans-serif;
+            color: #ffffff; cursor: pointer; user-select: none;
+            padding: 2px 12px; border: 2px solid #00f6ff; border-radius: 8px; 
+            background: rgba(0, 246, 255, 0.05); transition: all 0.3s ease; display: inline-block; letter-spacing: 1px;
+        }
+        nav .logo span { color: #00f6ff; transition: all 0.3s ease; }
+        nav .logo:hover { background: #00f6ff; color: #080c13; box-shadow: 0 0 15px rgba(0, 246, 255, 0.5); transform: translateY(-2px); }
+        nav .logo:hover span { color: #080c13; }
+        
+        nav ul { list-style: none; display: flex; gap: 15px; } 
+        
+        nav ul li a { 
+            color: #e2e8f0; 
+            text-decoration: none; 
+            font-weight: 500; 
+            font-size: 1em; 
+            transition: all 0.3s ease; 
+            padding: 8px 20px; 
+            border-radius: 30px; 
+        }
+        
+        nav ul li a:hover, nav ul li a.active { 
+            background: #00f6ff; 
+            color: #ffffff; 
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); 
+            box-shadow: 0 4px 15px rgba(0, 246, 255, 0.3); 
+        }
+
+        /* Hero Section */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 120px 10% 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+        
+        .hero-content h3 { font-size: 1.5em; font-weight: 500; margin-bottom: 5px; text-shadow: 0 4px 15px rgba(0,0,0,0.8); }
+        .hero-content h1 { font-size: 3.5em; font-weight: 800; margin-bottom: 5px; line-height: 1.1; text-shadow: 0 4px 20px rgba(0,0,0,0.9); }
+        .hero-content h2 { font-size: 1.8em; font-weight: 600; margin-bottom: 20px; text-shadow: 0 4px 15px rgba(0,0,0,0.8); }
+        .hero-content h2 span { color: #00f6ff; }
+        
+        .hero-text-box {
+            background: rgba(10, 15, 25, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .hero-text-box p { color: #cbd5e1; font-size: 1.1em; line-height: 1.7; margin-bottom: 15px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .hero-text-box p:last-child { margin-bottom: 0; }
+
+        /* Buttons */
+        .header-buttons { display: flex; flex-wrap: wrap; gap: 15px; position: relative; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+        
+        .btn-primary { 
+            background: #00f6ff; color: #1a1d24; 
+            box-shadow: 0 0 20px rgba(0, 246, 255, 0.5); 
+        }
+        .btn-primary:hover { box-shadow: 0 0 35px rgba(0, 246, 255, 0.8); transform: translateY(-3px); }
+        
+        .btn-outline { 
+            background: rgba(10, 15, 25, 0.6);
+            backdrop-filter: blur(15px);
+            border: 2px solid #00f6ff; 
+            color: #00f6ff; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .btn-outline:hover { background: rgba(0, 246, 255, 0.15); transform: translateY(-3px); box-shadow: 0 0 20px rgba(0, 246, 255, 0.4); }
+
+        /* Hero Image */
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 20px;
+        }
+
+        .hex-wrapper {
+            position: relative;
+            width: 380px; height: 430px;
+            display: flex; justify-content: center; align-items: center;
+            animation: slowShake 2.5s ease-in-out infinite;
+        }
+        
+        .hex-glow {
+            position: absolute;
+            width: 100%; height: 100%;
+            background: #00f6ff;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            filter: blur(25px);
+            z-index: 1;
+        }
+
+        .hex-border {
+            position: absolute;
+            width: 98%; height: 98%;
+            background: #00f6ff;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: 2;
+        }
+
+        .hex-img {
+            position: relative;
+            width: 93%; height: 93%;
+            object-fit: cover;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: 3;
+            background-color: #1a1d24; 
+        }
+
+        /* Generic Section Styling */
+        section:not(#home) { padding: 100px 5% 60px; max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.05); }
+        .section-title { text-align: center; font-size: 2.4em; margin-bottom: 50px; font-weight: 700; text-shadow: 0 4px 10px rgba(0,0,0,0.8); }
+        .section-title span { color: #00f6ff; }
+
+        /* Glass Card */
+        .glass-card {
+            background: linear-gradient(135deg, rgba(10, 15, 25, 0.6) 0%, rgba(10, 15, 25, 0.3) 100%);
+            backdrop-filter: blur(25px); 
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.15); 
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); 
+            padding: 40px 30px;
+        }
+
+        /* Custom Styling for Intro/Journey text */
+        .intro-text p {
+            color: #cbd5e1;
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .intro-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .journey-block {
+            margin-bottom: 30px;
+        }
+        .journey-block:last-child {
+            margin-bottom: 0;
+        }
+        .journey-block h3 {
+            font-size: 1.3em;
+            color: #00f6ff;
+            margin-bottom: 8px;
+        }
+        .journey-block p {
+            color: #cbd5e1;
+            font-size: 1.05em;
+            line-height: 1.7;
+            text-align: justify;
+        }
+        
+        /* Certifications Styling */
+        .cert-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .cert-item {
+            background: rgba(0, 246, 255, 0.05);
+            border-left: 4px solid #00f6ff;
+            padding: 18px 25px;
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-size: 1.15em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .cert-item:hover {
+            background: rgba(0, 246, 255, 0.15);
+            transform: translateX(10px);
+            box-shadow: 0 4px 15px rgba(0, 246, 255, 0.2);
+        }
+        .cert-icon {
+            font-size: 1.5em;
+        }
+
+        /* Expertise Styling */
+        .expertise-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 10px;
+        }
+        .expertise-item {
+            background: rgba(0, 246, 255, 0.03);
+            border: 1px solid rgba(0, 246, 255, 0.15);
+            padding: 25px 20px;
+            border-radius: 12px;
+            color: #e2e8f0;
+            font-size: 1.1em;
+            font-weight: 500;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+        .expertise-item:hover {
+            background: rgba(0, 246, 255, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 246, 255, 0.15);
+            border-color: #00f6ff;
+        }
+        .expertise-icon {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            #home { flex-direction: column-reverse; text-align: center; padding-top: 160px; justify-content: center; gap: 50px; }
+            .hero-image { justify-content: center; padding-right: 0; width: 100%; }
+            .hex-wrapper { width: 300px; height: 340px; }
+            body::before, body::after { width: 400px; height: 400px; filter: blur(90px); }
+            nav { flex-direction: column; padding: 15px; gap: 15px; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 10px; }
+            .header-buttons { justify-content: center; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-content h1 { font-size: 2.4em; }
+            .hero-content h2 { font-size: 1.4em; }
+            .hero-content h3 { font-size: 1.2em; }
+            .hero-text-box p { font-size: 1em; }
+            .section-title { font-size: 2em; margin-bottom: 30px; }
+            section:not(#home) { padding: 80px 5% 40px; }
+            #home { padding-top: 180px; padding-bottom: 40px; }
+            nav { padding: 15px 5%; }
+            nav .logo { font-size: 1.4em; }
+            nav ul { gap: 8px; }
+            nav ul li a { padding: 6px 12px; font-size: 0.9em; }
+            .hex-wrapper { width: 230px; height: 260px; }
+            .glass-card { padding: 25px 15px; }
+            .btn { width: 100%; max-width: 300px; }
+            .cert-item { font-size: 1em; padding: 15px; }
+            .expertise-container { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+            .expertise-item { padding: 20px 10px; font-size: 1em; }
+            .expertise-icon { font-size: 2em; }
+        }
+    </style>
+</head>
+
+<body oncontextmenu="return false;">
+
+    <nav>
+       <div class="logo" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" title="Go to Home">K<span>T</span></div>
+        <ul>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#About">Introduction</a></li>
+            <li><a href="#journey">My Journey</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#expertise">Expertise</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="hero-content">
+            <h1>Kavita Teja</h1>
+            <h2><span>✨ Certified Nail & SPMU Educator</span></h2>
+            
+            <div class="hero-text-box">
+                <p class="highlight-text" style="color: #00f6ff; font-weight: 600;">Beauty Trainer | Nail Artist | SPMU Specialist</p>
+                <h4 style="margin-top: 15px; color: #ffffff;">Professional Profile</h4>
+                <p>Passionate and certified beauty educator specializing in advanced nail artistry and Semi-Permanent Makeup (SPMU). Dedicated to empowering aspiring artists through high-quality training, blending creativity with industry-leading techniques to transform passion into a successful profession.</p>
+            </div>
+            
+            <div class="header-buttons" style="margin-top: 30px;">
+                <a href="#certifications" class="btn btn-outline">
+                    🏆 Certified Educator
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <div class="hex-wrapper">
+                <div class="hex-glow"></div>
+                <div class="hex-border"></div>
+                <img src="kavitaTeja.jpeg" alt="Kavita Teja" class="hex-img" onerror="this.src='https://via.placeholder.com/400x450/1a1d24/00f6ff?text=KT'">
+            </div>
+        </div>
+    </section>
+
+    <section id="About">
+        <h2 class="section-title">My <span>Introduction</span></h2>
+        <div class="glass-card intro-text">
+            <p>Hello! I'm a <strong style="color: #00f6ff; font-weight: 600;">Certified Nail & SPMU Educator</strong> with a passion for empowering aspiring beauty professionals through high-quality education and hands-on training. I specialize in advanced nail techniques and Semi-Permanent Makeup (SPMU), helping students develop the confidence and skills needed to succeed in the beauty industry.</p>
+            
+            <p>My journey began with a love for creativity and beauty, which inspired me to transform my passion into a profession. Through continuous learning, professional certifications, and practical experience, I have dedicated myself to delivering industry-standard education that prepares students for real-world success.</p>
+            
+            <p>My mission is to inspire, mentor, and guide future beauty artists by providing personalized training, modern techniques, and a supportive learning environment. I believe that every student has the potential to build a successful career with the right knowledge, practice, and encouragement.</p>
+            
+            <p>What sets me apart is my commitment to practical learning, attention to detail, patience in teaching, and genuine dedication to each student's growth. I strive not only to teach beauty techniques but also to help individuals build confidence, creativity, and a strong foundation for a successful future in the beauty industry.</p>
+        </div>
+    </section>
+
+    <section id="journey">
+        <h2 class="section-title">My <span>Journey</span></h2>
+        <div class="glass-card intro-text">
+            
+            <div class="journey-block">
+                <h3>💅 Started as a Nail Artist</h3>
+                <p>My journey began with a passion for creativity and beauty. I started as a Nail Artist, dedicating myself to mastering modern nail techniques and delivering high-quality services.</p>
+            </div>
+
+            <div class="journey-block">
+                <h3>🎓 Earned Professional Certifications</h3>
+                <p>Driven by continuous learning, I completed professional certifications in Nail Technology and Semi-Permanent Makeup (SPMU), strengthening my expertise and staying aligned with the latest industry standards.</p>
+            </div>
+
+            <div class="journey-block">
+                <h3>👩‍🏫 Became a Certified Educator</h3>
+                <p>As my experience grew, I became a Certified Nail & SPMU Educator, committed to sharing my knowledge and helping aspiring beauty professionals build successful careers.</p>
+            </div>
+
+            <div class="journey-block">
+                <h3>🌟 Trained Future Beauty Professionals</h3>
+                <p>Through hands-on training, practical demonstrations, and personalized mentorship, I have guided students in developing the confidence, technical skills, and creativity needed to excel in the beauty industry.</p>
+            </div>
+
+            <div class="journey-block">
+                <h3>📚 Continuing Professional Development</h3>
+                <p>Learning never stops. I continuously enhance my skills by attending advanced workshops, exploring new techniques, and staying updated with the latest beauty trends to provide the highest standard of education and training.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2 class="section-title">My <span>Certifications</span></h2>
+        <div class="glass-card cert-container">
+            
+            <div class="cert-item">
+                <span class="cert-icon">🥇</span> 
+                Certified Nail Educator
+            </div>
+
+            <div class="cert-item">
+                <span class="cert-icon">🏆</span> 
+                Certified SPMU Educator
+            </div>
+
+            <div class="cert-item">
+                <span class="cert-icon">📜</span> 
+                Advanced Nail Art Certification
+            </div>
+
+            <div class="cert-item">
+                <span class="cert-icon">🎖️</span> 
+                PMU Certification
+            </div>
+
+            <div class="cert-item">
+                <span class="cert-icon">🎓</span> 
+                Beauty Workshops & Masterclasses
+            </div>
+
+        </div>
+    </section>
+
+    <section id="expertise">
+        <h2 class="section-title">My <span>Expertise</span></h2>
+        <div class="glass-card">
+            <div class="expertise-container">
+                
+                <div class="expertise-item">
+                    <span class="expertise-icon">💅</span>
+                    Nail Extensions
+                </div>
+                
+                <div class="expertise-item">
+                    <span class="expertise-icon">🎨</span>
+                    Nail Art
+                </div>
+                
+                <div class="expertise-item">
+                    <span class="expertise-icon">✨</span>
+                    Gel Polish
+                </div>
+                
+                <div class="expertise-item">
+                    <span class="expertise-icon">💎</span>
+                    Acrylic Nails
+                </div>
+                
+                <div class="expertise-item">
+                    <span class="expertise-icon">👑</span>
+                    Russian Manicure
+                </div>
+                
+                <div class="expertise-item">
+                    <span class="expertise-icon">🌸</span>
+                    BIAB Nails
+                </div>
+                
+                <div class="expertise-item">
+                    <span class="expertise-icon">👄</span>
+                    Lip Blush
+                </div>
+                
+                <div class="expertise-item">
+                    <span class="expertise-icon">👁</span>
+                    Ombre Brows
+                </div>
+                
+                <div class="expertise-item">
+                    <span class="expertise-icon">✍️</span>
+                    Microblading
+                </div>
+                
+                <div class="expertise-item">
+                    <span class="expertise-icon">💄</span>
+                    Permanent Makeup (SPMU)
+                </div>
+                
+                <div class="expertise-item">
+                    <span class="expertise-icon">👁️</span>
+                    Lash Lift
+                </div>
+                
+                <div class="expertise-item">
+                    <span class="expertise-icon">🌿</span>
+                    Brow Lamination
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth Click Scrolling
+        document.querySelectorAll('nav a, .btn-outline[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if(targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 60,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Dynamic Scrollspy: Auto-selects active section link on top bar
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                // Triggers highlight slightly before entering the section completely
+                if (window.scrollY >= (sectionTop - 140)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            // Fallback for reaching bottom of the page
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 20) {
+                current = sections[sections.length - 1].getAttribute('id');
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Security key restrictions
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12') { e.preventDefault(); }
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); }
+            if (e.ctrlKey && e.shiftKey && e.key === 'C') { e.preventDefault(); }
+            if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); }
+            if (e.ctrlKey && e.key.toLowerCase() === 'u') { e.preventDefault(); }
+        });
+    </script>
+
+</body>
+</html>
